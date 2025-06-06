@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>단지안내 - 창원 롯데캐슬 프리미어</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .complex-section {
+      max-width: 1000px;
+      margin: 3rem auto;
+      padding: 0 1rem;
+      text-align: center;
+    }
+
+    .complex-section img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+
+    .complex-section h3 {
+      font-size: 1.5rem;
+      color: #002B45;
+      margin-bottom: 1rem;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 1.3s ease-out, transform 1.3s ease-out;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 768px) {
+      .complex-section {
+        margin: 2rem auto;
+      }
+
+      .complex-section h3 {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page-wrapper">
+    <!-- ✅ 공통 헤더 -->
+    <div id="header-placeholder"></div>
+
+    <!-- ✅ 본문 콘텐츠 -->
+    <main>
+      <h2 class="headline">단지배치도</h2>
+
+      <!-- ✅ 단지 이미지 (고정 표시) -->
+      <section class="complex-section">
+        <img src="images/complex.jpg" alt="단지 이미지">
+      </section>
+
+      <!-- ✅ 동호수 배치도 -->
+      <section class="complex-section">
+        <h3>동호수 배치도</h3>
+        <img src="images/dh.jpg" alt="동호수 배치도" class="reveal">
+      </section>
+
+      <!-- ✅ 커뮤니티 시설 -->
+      <section class="complex-section">
+        <h3>커뮤니티 시설</h3>
+        <img src="images/community.png" alt="커뮤니티 시설" class="reveal">
+      </section>
+    </main>
+
+    <!-- ✅ 공통 푸터 -->
+    <div id="footer-placeholder"></div>
+  </div>
+
+  <!-- ✅ JS: include + reveal -->
+  <script>
+    fetch('header.html')
+      .then(res => res.text())
+      .then(data => document.getElementById('header-placeholder').innerHTML = data);
+
+    fetch('footer.html')
+      .then(res => res.text())
+      .then(data => document.getElementById('footer-placeholder').innerHTML = data);
+
+    const revealEls = document.querySelectorAll('.reveal');
+    function handleReveal() {
+      revealEls.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) {
+          el.classList.add('visible');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', handleReveal);
+    window.addEventListener('load', handleReveal);
+  </script>
+</body>
+</html>

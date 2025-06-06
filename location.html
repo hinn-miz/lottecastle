@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>오시는길 - 창원 롯데캐슬 프리미어</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    .location-section {
+      max-width: 1000px;
+      margin: 3rem auto;
+      padding: 0 1rem;
+      text-align: center;
+    }
+
+    .location-section img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .location-section p {
+      margin-top: 1.5rem;
+      font-size: 1.1rem;
+      color: #002B45;
+      font-weight: 500;
+    }
+
+    .notice-box {
+      background-color: #f2f2f2;
+      color: #333;
+      padding: 1.5rem 1.5rem;
+      margin-top: 2rem;
+      border-left: 6px solid #002B45;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      text-align: left;
+    }
+
+    .highlight {
+      color: #d60000;
+      font-weight: bold;
+    }
+
+    .contact-link {
+      text-align: center;
+      margin: 3rem 0;
+    }
+
+    .contact-button {
+      display: inline-block;
+      background-color: #002B45;
+      color: #fff;
+      padding: 0.8rem 2rem;
+      font-size: 1.1rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .contact-button:hover {
+      background-color: #004066;
+    }
+
+    @media (max-width: 768px) {
+      .location-section p {
+        font-size: 1rem;
+      }
+
+      .notice-box {
+        font-size: 0.95rem;
+        padding: 1.2rem 1rem;
+      }
+
+      .contact-button {
+        font-size: 1rem;
+        padding: 0.7rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page-wrapper">
+    <!-- ✅ 공통 헤더 -->
+    <div id="header-placeholder"></div>
+
+    <!-- ✅ 본문 콘텐츠 -->
+    <main>
+      <h2 class="headline">오시는길</h2>
+
+      <!-- ✅ 지도 안내 -->
+      <section class="location-section">
+        <p>견본주택 : 원하는 동호 직접 관람가능</p>
+      </section>
+
+      <!-- ✅ 주의사항 안내 -->
+      <section class="location-section">
+        <div class="notice-box">
+          <strong>※ 주의사항</strong><br>
+          견본주택은<br>
+          <span class="highlight">100% 예약담당제</span>로 운영되고 있으며,<br>
+          예약 및 전화 문의 후 <br>
+          <span class="highlight">담당자를 통해 안내</span> 받으실 수 있습니다.
+        </div>
+      </section>
+
+      <!-- ✅ 문의 버튼 -->
+      <section class="contact-link">
+        <a href="contact.html" class="contact-button">예약/문의 바로가기</a>
+      </section>
+    </main>
+
+    <!-- ✅ 공통 푸터 -->
+    <div id="footer-placeholder"></div>
+  </div>
+
+  <!-- ✅ 헤더/푸터 JS include -->
+  <script>
+    fetch('header.html')
+      .then(res => res.text())
+      .then(data => document.getElementById('header-placeholder').innerHTML = data);
+
+    fetch('footer.html')
+      .then(res => res.text())
+      .then(data => document.getElementById('footer-placeholder').innerHTML = data);
+  </script>
+</body>
+</html>

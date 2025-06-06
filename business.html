@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>사업안내 - 창원 롯데캐슬 프리미어</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .business-slider {
+      max-width: 1000px;
+      margin: 2rem auto;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      padding: 0 1rem;
+    }
+
+    .business-slider img {
+      max-width: 100%;
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      opacity: 0;
+      transition: opacity 1s ease;
+      display: none;
+    }
+
+    .business-slider img.active {
+      opacity: 1;
+      display: block;
+    }
+
+    .business-section {
+      max-width: 1000px;
+      margin: 3rem auto;
+      padding: 0 1rem;
+      text-align: center;
+    }
+
+    .business-section img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    .business-section h3 {
+      font-size: 1.5rem;
+      color: #002B45;
+      margin-bottom: 1rem;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 1.3s ease-out, transform 1.3s ease-out;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 768px) {
+      .business-slider {
+        margin: 1.5rem auto;
+      }
+
+      .business-section {
+        margin: 2rem auto;
+      }
+
+      .business-section h3 {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page-wrapper">
+    <!-- ✅ 공통 헤더 -->
+    <div id="header-placeholder"></div>
+
+    <!-- ✅ 본문 콘텐츠 -->
+    <main>
+      <h2 class="headline">사업개요</h2>
+
+      <!-- ✅ 슬라이드 이미지 -->
+      <section class="business-slider">
+        <img src="images/planning.jpg" class="slide active" alt="사업 조감도 1">
+        <img src="images/planning02.jpg" class="slide" alt="사업 조감도 2">
+        <img src="images/planning03.jpg" class="slide" alt="사업 조감도 3">
+      </section>
+
+      <!-- ✅ 사업개요 이미지 -->
+      <section class="business-section">
+        <img src="images/summary.png" alt="사업개요 이미지">
+      </section>
+
+      <!-- ✅ 입지정보 -->
+      <section class="business-section">
+        <h3>입지정보</h3>
+        <img src="images/location_map2.jpg" alt="입지정보 이미지" class="reveal">
+      </section>
+
+      <section class="business-section">
+        <img src="images/loc2.png" alt="입지장점" class="reveal">
+      </section>
+    </main>
+
+    <!-- ✅ 공통 푸터 -->
+    <div id="footer-placeholder"></div>
+  </div>
+
+  <!-- ✅ JS: include + 슬라이드 + reveal -->
+  <script>
+    fetch('header.html')
+      .then(res => res.text())
+      .then(data => document.getElementById('header-placeholder').innerHTML = data);
+
+    fetch('footer.html')
+      .then(res => res.text())
+      .then(data => document.getElementById('footer-placeholder').innerHTML = data);
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const slides = document.querySelectorAll('.business-slider .slide');
+      let current = 0;
+      if (slides.length > 0) {
+        setInterval(() => {
+          slides[current].classList.remove('active');
+          current = (current + 1) % slides.length;
+          slides[current].classList.add('active');
+        }, 8000);
+      }
+    });
+
+    const revealEls = document.querySelectorAll('.reveal');
+    function handleReveal() {
+      revealEls.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) {
+          el.classList.add('visible');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', handleReveal);
+    window.addEventListener('load', handleReveal);
+  </script>
+</body>
+</html>
